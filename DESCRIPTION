@@ -12,3 +12,9 @@ LazyData: true
 URL: https://github.com/amkessler/precinctsopenelex
 BugReports: https://github.com/amkessler/precinctsopenelex/issues
 RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
