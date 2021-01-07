@@ -28,7 +28,9 @@ Now let's get to the NY processing
 
 ```{r}
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
+library(stringr)
 library(janitor)
 library(readxl)
 
@@ -65,16 +67,8 @@ process_ny_data <- function(df, office, district){
 
 
 
-#create county name variable and Excel file name string for use below
+#create county name variable to add correct county to the data you're processing
 target_county <- "Saratoga"
-
-filestring_import <- paste0(
-              "NY_",
-              target_county,
-              "/",
-              target_county,
-              "_NY_GE20_cleaned.xlsx"
-            )
 
 
 # Presidential ####
@@ -83,10 +77,33 @@ filestring_import <- paste0(
 # - dataset (or import from excel function)
 # - office: text label for office (e.g. "U.S. House")
 # - district: text label for district (e.g. "42")
-processed_prez <- process_ny_data(read_excel(filestring_import, sheet = "presidential"), 
-                                  "President", 
+
+# *note: the import function itself can be wrapped inside, as long as the data coming in is the correct structure
+# processed_prez <- process_ny_data(read_excel(filestring_import, sheet = "presidential"), 
+#                                   "President", 
+#                                   "")
+
+#we'll use the included sample dataset - "precinctsampledata_ny" - to demonstrate that's been cleaned and ready for processing
+head(precinctsampledata_ny)
+glimpse(precinctsampledata_ny)
+#note the precise way of formatting the column names that will allow the function to work correctly:
+# -candidate columns should be written as "candidate name - party"
+# -additional choices should be listed as "WriteIn" (write-in votes), "Blanks" (undervotes), and "Voids" (overvotes)
+
+
+#now let's run the processing to reformat the data into the open elections standardized format, which is tidy/long
+#as opposed to wide
+
+# Function wants:
+# - dataset (or import from excel function)
+# - office: text label for office (e.g. "U.S. House")
+# - district: text label for district (e.g. "42"; note that presidential has no district, it's just "")
+
+processed_prez <- process_ny_data(precinctsampledata_ny,
+                                  "Presidential",
                                   "")
-processed_prez
+
+head(processed_prez, 10)
 
 
 
