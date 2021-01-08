@@ -10,6 +10,7 @@
 #' @export
 #'
 #' @examples
+#' create_infile_string("NY", "Saratoga")
 create_infile_string <- function(stateabbr, countyname) {
   in_name <- paste0(
     stateabbr,
@@ -41,6 +42,7 @@ create_infile_string <- function(stateabbr, countyname) {
 #' @import stringr
 #'
 #' @examples
+#' \dontrun{
 #' reshape_ny_data(mydata)
 #' }
 reshape_ny_data <- function(df, office, district){

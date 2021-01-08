@@ -23,12 +23,6 @@ library(janitor)
 library(readxl)
 ```
 
-First we'll run the default sample function to make sure it works.
-```{r}
-hello()
-
-```
-
 Now let's get to the NY processing
 
 ```{r}

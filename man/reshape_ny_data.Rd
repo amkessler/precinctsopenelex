@@ -20,3 +20,8 @@ a reshaped dataframe in openelex long/tidy format
 This function is designed to take a dataset ready to be reshaped once the initial cleanup steps are taken.
 The file will have a precinct column, followed by columns with vote results parsed from the "candidate - party" field
 }
+\examples{
+\dontrun{
+reshape_ny_data(mydata)
+}
+}

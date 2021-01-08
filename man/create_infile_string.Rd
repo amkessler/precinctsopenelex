@@ -18,3 +18,6 @@ a text string
 Can be used to build a file string specific to a county, based on the standardized folder/file format
 "NY_Saratoga/NY_Saratoga_GE20_cleaned.xlsx"
 }
+\examples{
+create_infile_string("NY", "Saratoga")
+}
