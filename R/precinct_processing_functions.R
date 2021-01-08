@@ -42,10 +42,8 @@ create_infile_string <- function(stateabbr, countyname) {
 #' @import stringr
 #'
 #' @examples
-#' \dontrun{
-#' reshape_ny_data(mydata)
-#' }
-reshape_ny_data <- function(df, office, district){
+#' \dontrun{#' reshape_precinct_data(dataframe)}
+reshape_precinct_data <- function(df, office, district){
   #determine how many columns, since races can have diff number of candidates
   colnum <- length(colnames(df))
   #begin processing dataset

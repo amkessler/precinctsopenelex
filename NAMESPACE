@@ -3,7 +3,7 @@
 export("%>%")
 export(create_infile_string)
 export(create_outfile_string)
-export(reshape_ny_data)
+export(reshape_precinct_data)
 import(dplyr)
 import(stringr)
 import(tidyr)

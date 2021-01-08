@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create File Name String for Saving Final OpenElex File — create_outfile_string • precinctsopenelex</title>
+<title>Reshaping County Precinct Data to OpenElex Format — reshape_precinct_data • precinctsopenelex</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Create File Name String for Saving Final OpenElex File — create_outfile_string" />
-<meta property="og:description" content="This function can be used to build a string for the final csv file. It uses the correct naming
-convention for the standardized OpenElex names for precinct files." />
+<meta property="og:title" content="Reshaping County Precinct Data to OpenElex Format — reshape_precinct_data" />
+<meta property="og:description" content="This function is designed to take a dataset ready to be reshaped once the initial cleanup steps are taken.
+The file will have a precinct column, followed by columns with vote results parsed from the &quot;candidate - party&quot; field" />
 
 
 
@@ -121,38 +121,41 @@ convention for the standardized OpenElex names for precinct files." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create File Name String for Saving Final OpenElex File</h1>
+    <h1>Reshaping County Precinct Data to OpenElex Format</h1>
     <small class="dont-index">Source: <a href='https://github.com/amkessler/precinctsopenelex/blob/master/R/precinct_processing_functions.R'><code>R/precinct_processing_functions.R</code></a></small>
-    <div class="hidden name"><code>create_outfile_string.Rd</code></div>
+    <div class="hidden name"><code>reshape_precinct_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function can be used to build a string for the final csv file. It uses the correct naming
-convention for the standardized OpenElex names for precinct files.</p>
+    <p>This function is designed to take a dataset ready to be reshaped once the initial cleanup steps are taken.
+The file will have a precinct column, followed by columns with vote results parsed from the "candidate - party" field</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_outfile_string</span><span class='op'>(</span><span class='va'>target_state</span>, <span class='va'>target_county</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>reshape_precinct_data</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>office</span>, <span class='va'>district</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>target_state</th>
-      <td><p>two-letter state abbreviation</p></td>
+      <th>df</th>
+      <td><p>formatted dataframe of county precinct-level results</p></td>
     </tr>
     <tr>
-      <th>target_county</th>
-      <td><p>county name</p></td>
+      <th>office</th>
+      <td><p>which office the results refer to (e.g. presidential, U.S. House, State Senate, etc.)</p></td>
+    </tr>
+    <tr>
+      <th>district</th>
+      <td><p>number for what district is associated with the office (e.g. "45" for the 45th congressional district. note presidential should be left blank as "")</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a file path/name</p>
+    <p>a reshaped dataframe in openelex long/tidy format</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_outfile_string</span><span class='op'>(</span><span class='st'>"NY"</span>, <span class='st'>"Saratoga"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "NY_Saratoga/20201103__NY__general__saratoga__precinct.csv"</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

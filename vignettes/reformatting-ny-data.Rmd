@@ -1,8 +1,8 @@
 ---
-title: "reformatting-ny-data"
+title: "reformatting-data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{reformatting-ny-data}
+  %\VignetteIndexEntry{reformatting-data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -72,7 +72,7 @@ Note the precise way of formatting the column names that will allow the function
 #                                   "President", 
 #                                   "")
 
-processed_prez <- reshape_ny_data(precinctsampledata_ny,
+processed_prez <- reshape_precinct_data(precinctsampledata_ny,
                                   "Presidential",
                                   "")
 
