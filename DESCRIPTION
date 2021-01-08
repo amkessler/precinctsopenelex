@@ -1,11 +1,13 @@
 Package: precinctsopenelex
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: Helps Process Precinct Results For OpenElex Project
+Version: 0.0.0.9000
+Author: Aaron Kessler
+Maintainer: Aaron Kessler <kessler.aaron@protonmail.com>
+Description: This package includes a number of helper functions designed to aid in creating precinct-level election results
+   to match the structure and format used by the OpenElections project.
+   It's designed to handle data at the county level that had been pre-processed to include fields with the precinct along with 
+   fields for candidate vote totals for that precinct.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

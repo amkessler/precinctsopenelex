@@ -1,3 +1,29 @@
+#' Create File Name String for Importing Data
+#'
+#' Can be used to build a file string specific to a county, based on the standardized folder/file format
+#' "NY_Saratoga/NY_Saratoga_GE20_cleaned.xlsx"
+#'
+#' @param stateabbr two-letter state abbreviation (e.g. "NY")
+#' @param countyname county name where the precincts located (e.g. "Saratoga")
+#'
+#' @return a text string
+#' @export
+#'
+#' @examples
+create_infile_string <- function(stateabbr, countyname) {
+  in_name <- paste0(
+    stateabbr,
+    "_",
+    countyname,
+    "/",
+    stateabbr,
+    "_",
+    countyname,
+    "_GE20_cleaned.xlsx"
+  )
+  return(in_name)
+}
+
 #' Reshaping County Precinct Data to OpenElex Format
 #'
 #' This function is designed to take a dataset ready to be reshaped once the initial cleanup steps are taken.
@@ -23,7 +49,7 @@ reshape_ny_data <- function(df, office, district){
   #begin processing dataset
   df <- df %>%
     #transform to long/tidy format
-    tidyr::pivot_longer(cols = 2:all_of(colnum), names_to = "name", values_to = "votes") %>%
+    pivot_longer(cols = 2:all_of(colnum), names_to = "name", values_to = "votes") %>%
     #clean and add necessary columns
     mutate(
       temp = str_split(name, " - ", simplify = TRUE),
@@ -40,4 +66,7 @@ reshape_ny_data <- function(df, office, district){
   #return results
   return(df)
 }
+
+
+
 

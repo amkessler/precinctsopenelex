@@ -16,6 +16,11 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(precinctsopenelex)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(janitor)
+library(readxl)
 ```
 
 First we'll run the default sample function to make sure it works.
@@ -28,17 +33,18 @@ Now let's get to the NY processing
 
 ```{r}
 
-library(dplyr)
-library(tidyr)
-library(stringr)
-library(janitor)
-library(readxl)
 
 
 
-#create county name variable to add correct county to the data you're processing
+
+#chose state abbreviation and county name variable needed for the input file string
+target_state <- "NY"
 target_county <- "Saratoga"
 
+#we'll create a name string using a package function to import the data file from Excel based on naming conventions used
+infile_string <- create_infile_string(target_state, target_county)
+
+infile_string
 
 # Presidential ####
 #run processing function sourced at the top along with import in one step
