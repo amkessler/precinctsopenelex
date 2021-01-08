@@ -42,8 +42,13 @@ We'll use the included sample dataset - "precinctsampledata_ny" - to demonstrate
 
 ```{r}
 head(precinctsampledata_ny)
-# glimpse(precinctsampledata_ny)
+
 ```
+
+```{r}
+glimpse(precinctsampledata_ny)
+```
+
 
 Note the precise way of formatting the column names that will allow the function to work correctly:  
 * candidate columns should be written as "candidate name - party"  
