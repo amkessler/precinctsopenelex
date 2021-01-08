@@ -135,12 +135,26 @@
 <span class="co">#&gt; 6 Ballsto…              622              538               71               31</span>
 <span class="co">#&gt; # … with 6 more variables: `Howie Hawkins - GRE` &lt;dbl&gt;, `Jo Jorgensen -</span>
 <span class="co">#&gt; #   LIB` &lt;dbl&gt;, `Brock Pierce - IND` &lt;dbl&gt;, WriteIn &lt;dbl&gt;, Blanks &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   Voids &lt;dbl&gt;</span>
-<span class="co"># glimpse(precinctsampledata_ny)</span></code></pre></div>
+<span class="co">#&gt; #   Voids &lt;dbl&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">precinctsampledata_ny</span><span class="op">)</span>
+<span class="co">#&gt; Rows: 196</span>
+<span class="co">#&gt; Columns: 11</span>
+<span class="co">#&gt; $ precinct                &lt;chr&gt; "Ballston 1", "Ballston 2", "Ballston 3", "Ba…</span>
+<span class="co">#&gt; $ `Joseph R. Biden - DEM` &lt;dbl&gt; 273, 485, 577, 428, 234, 622, 299, 264, 208, …</span>
+<span class="co">#&gt; $ `Donald J. Trump - REP` &lt;dbl&gt; 195, 412, 502, 316, 193, 538, 278, 319, 219, …</span>
+<span class="co">#&gt; $ `Donald J. Trump - CON` &lt;dbl&gt; 16, 58, 64, 48, 32, 71, 27, 33, 25, 47, 25, 3…</span>
+<span class="co">#&gt; $ `Joseph R. Biden - WOR` &lt;dbl&gt; 31, 18, 31, 16, 15, 31, 21, 17, 8, 17, 10, 12…</span>
+<span class="co">#&gt; $ `Howie Hawkins - GRE`   &lt;dbl&gt; 5, 7, 3, 3, 3, 3, 3, 1, 3, 2, 1, 6, 1, 1, 1, …</span>
+<span class="co">#&gt; $ `Jo Jorgensen - LIB`    &lt;dbl&gt; 8, 20, 7, 11, 8, 12, 11, 10, 5, 18, 3, 12, 17…</span>
+<span class="co">#&gt; $ `Brock Pierce - IND`    &lt;dbl&gt; 1, 6, 7, 5, 2, 7, 0, 1, 1, 2, 0, 4, 4, 0, 9, …</span>
+<span class="co">#&gt; $ WriteIn                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, …</span>
+<span class="co">#&gt; $ Blanks                  &lt;dbl&gt; 4, 5, 7, 3, 2, 7, 4, 2, 2, 3, 0, 2, 5, 2, 0, …</span>
+<span class="co">#&gt; $ Voids                   &lt;dbl&gt; 1, 2, 3, 4, 0, 6, 3, 3, 4, 4, 0, 1, 1, 0, 2, …</span></code></pre></div>
 <p>Note the precise way of formatting the column names that will allow the function to work correctly:<br>
 * candidate columns should be written as “candidate name - party”<br>
 * additional choices should be listed as “WriteIn” (write-in votes), “Blanks” (undervotes), and “Voids” (overvotes)</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 
 
@@ -178,7 +192,7 @@
 <span class="co">#&gt; 10 Ballston 1 Presidential ""       Voids           ""        1</span></code></pre></div>
 <p>We now have the presidential results in the right format. In a real-world scenario, there would be several different races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.</p>
 <p>In the end, once all a county’s races are prepared we’ll stitch them together into a combined file.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#we'll use a pattern matching to pull all dataframes in the environment</span>
 <span class="co">#with "processed" in the name and build a list of them to feed to bind_rows()</span>
@@ -187,7 +201,7 @@
 
 <span class="va">processed_combined</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">target_dfs_list</span><span class="op">)</span></code></pre></div>
 <p>With the dataset ready, let’s do some quick integrity checks to visually inspect.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## MANUAL INTEGRITY CHECKS ####</span>
 <span class="co">#check parties</span>
 <span class="va">processed_combined</span> <span class="op">%&gt;%</span> 
@@ -227,7 +241,7 @@
 <span class="co">#&gt; 7 Voids             196</span>
 <span class="co">#&gt; 8 Write-Ins         196</span></code></pre></div>
 <p>Now we’ll export the results to a csv file named using the standardized OpenElections filename method. The function below provides a shortcut to creating that filename.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#build name string using openelex naming convention for 2020 general elex files</span>
 <span class="va">outfile_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_outfile_string.html">create_outfile_string</a></span><span class="op">(</span><span class="st">"NY"</span>, <span class="st">"Saratoga"</span><span class="op">)</span>
