@@ -31,7 +31,7 @@ create_infile_string <- function(stateabbr, countyname) {
 #' The file will have a precinct column, followed by columns with vote results parsed from the "candidate - party" field
 #'
 #' @param df formatted dataframe of county precinct-level results
-#' @param office which office the results refer to (e.g. presidential, U.S. House, State Senate, etc.)
+#' @param office which office the results refer to (e.g. "presidential", "U.S. House", "State Senate", etc.)
 #' @param district number for what district is associated with the office (e.g. "45" for the 45th congressional district. note presidential should be left blank as "")
 #'
 #'
@@ -41,8 +41,9 @@ create_infile_string <- function(stateabbr, countyname) {
 #' @import tidyr
 #' @import stringr
 #'
-#' @examples
-#' \dontrun{#' reshape_precinct_data(dataframe)}
+#' @examples \dontrun{
+#' reshape_precinct_data(mydataframe)
+#' }
 reshape_precinct_data <- function(df, office, district){
   #determine how many columns, since races can have diff number of candidates
   colnum <- length(colnames(df))

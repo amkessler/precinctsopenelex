@@ -9,7 +9,7 @@ reshape_precinct_data(df, office, district)
 \arguments{
 \item{df}{formatted dataframe of county precinct-level results}
 
-\item{office}{which office the results refer to (e.g. presidential, U.S. House, State Senate, etc.)}
+\item{office}{which office the results refer to (e.g. "presidential", "U.S. House", "State Senate", etc.)}
 
 \item{district}{number for what district is associated with the office (e.g. "45" for the 45th congressional district. note presidential should be left blank as "")}
 }
@@ -21,5 +21,7 @@ This function is designed to take a dataset ready to be reshaped once the initia
 The file will have a precinct column, followed by columns with vote results parsed from the "candidate - party" field
 }
 \examples{
-\dontrun{#' reshape_precinct_data(dataframe)}
+\dontrun{
+reshape_precinct_data(mydataframe)
+}
 }
