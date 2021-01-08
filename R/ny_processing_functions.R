@@ -70,5 +70,31 @@ reshape_ny_data <- function(df, office, district){
 }
 
 
+#' Create File Name String for Saving Final OpenElex File
+#'
+#' This function can be used to build a string for the final csv file. It uses the correct naming
+#' convention for the standardized OpenElex names for precinct files.
+#'
+#' @param target_state two-letter state abbreviation
+#' @param target_county county name
+#'
+#' @return a file path/name
+#' @export
+#'
+#' @examples
+#' create_outfile_string("NY", "Saratoga")
+create_outfile_string <- function(target_state, target_county) {
+  out_string <- paste0(
+    target_state,
+    "_",
+    target_county,
+    "/20201103__",
+    target_state,
+    "__general__",
+    str_to_lower(target_county),
+    "__precinct.csv"
+  )
+  return(out_string)
+}
 
 

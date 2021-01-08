@@ -42,7 +42,7 @@ We'll use the included sample dataset - "precinctsampledata_ny" - to demonstrate
 
 ```{r}
 head(precinctsampledata_ny)
-glimpse(precinctsampledata_ny)
+# glimpse(precinctsampledata_ny)
 ```
 
 Note the precise way of formatting the column names that will allow the function to work correctly:  
@@ -74,8 +74,59 @@ processed_prez <- reshape_ny_data(precinctsampledata_ny,
 head(processed_prez, 10)
 
 
+```
 
+We now have the presidential results in the right format. In a real-world scenario, there would be several different races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.  
+    
+In the end, once all a county's races are prepared we'll stitch them together into a combined file.
+
+```{r}
+
+#we'll use a pattern matching to pull all dataframes in the environment
+#with "processed" in the name and build a list of them to feed to bind_rows()
+target_dfs <- grep("processed", names(.GlobalEnv), value=TRUE)
+target_dfs_list <- do.call("list", mget(target_dfs))
+
+processed_combined <- bind_rows(target_dfs_list)
 
 ```
+
+With the dataset ready, let's do some quick integrity checks to visually inspect.
+
+```{r}
+## MANUAL INTEGRITY CHECKS ####
+#check parties
+processed_combined %>% 
+  count(party)
+
+#check districts
+processed_combined %>% 
+  count(office, district)
+
+#check candidates
+processed_combined %>% 
+  count(candidate)
+```
+
+Now we'll export the results to a csv file named using the standardized OpenElections filename method. The function below provides a shortcut to creating that filename.
+
+```{r}
+
+#build name string using openelex naming convention for 2020 general elex files
+outfile_string <- create_outfile_string("NY", "Saratoga")
+
+outfile_string
+
+#export to csv
+# not run:
+# write_csv(processed_combined, outfile_string, na = "")
+
+```
+
+
+
+
+
+
 
 
