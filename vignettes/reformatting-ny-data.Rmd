@@ -23,14 +23,11 @@ library(janitor)
 library(readxl)
 ```
 
-Now let's get to the NY processing
+This vignette is intended to provide a walk-through of processing a set of precinct results from Saratoga County, NY, for the 2020 U.S. presidential election.  
+  
+This sample dataset for Saratoga is included with the package to allow for exploration, and provides a template for how the data should be structured for the functions to operate.  
 
 ```{r}
-
-
-
-
-
 #chose state abbreviation and county name variable needed for the input file string
 target_state <- "NY"
 target_county <- "Saratoga"
@@ -39,25 +36,21 @@ target_county <- "Saratoga"
 infile_string <- create_infile_string(target_state, target_county)
 
 infile_string
+```
 
-# Presidential ####
-#run processing function sourced at the top along with import in one step
-# Function wants:
-# - dataset (or import from excel function)
-# - office: text label for office (e.g. "U.S. House")
-# - district: text label for district (e.g. "42")
+We'll use the included sample dataset - "precinctsampledata_ny" - to demonstrate that's been cleaned and ready for processing.
 
-# *note: the import function itself can be wrapped inside, as long as the data coming in is the correct structure
-# processed_prez <- process_ny_data(read_excel(filestring_import, sheet = "presidential"), 
-#                                   "President", 
-#                                   "")
-
-#we'll use the included sample dataset - "precinctsampledata_ny" - to demonstrate that's been cleaned and ready for processing
+```{r}
 head(precinctsampledata_ny)
 glimpse(precinctsampledata_ny)
-#note the precise way of formatting the column names that will allow the function to work correctly:
-# -candidate columns should be written as "candidate name - party"
-# -additional choices should be listed as "WriteIn" (write-in votes), "Blanks" (undervotes), and "Voids" (overvotes)
+```
+
+Note the precise way of formatting the column names that will allow the function to work correctly:  
+* candidate columns should be written as "candidate name - party"  
+* additional choices should be listed as "WriteIn" (write-in votes), "Blanks" (undervotes), and "Voids" (overvotes)
+
+```{r}
+
 
 
 #now let's run the processing to reformat the data into the open elections standardized format, which is tidy/long
@@ -66,7 +59,13 @@ glimpse(precinctsampledata_ny)
 # Function wants:
 # - dataset (or import from excel function)
 # - office: text label for office (e.g. "U.S. House")
-# - district: text label for district (e.g. "42"; note that presidential has no district, it's just "")
+# - district: text label for district (e.g. "42"
+#   note that presidential has no district, it's just "")
+
+# *note: the import function itself can be wrapped inside, as long as the data coming in is the correct structure
+# processed_prez <- process_ny_data(read_excel(filestring_import, sheet = "presidential"), 
+#                                   "President", 
+#                                   "")
 
 processed_prez <- reshape_ny_data(precinctsampledata_ny,
                                   "Presidential",
