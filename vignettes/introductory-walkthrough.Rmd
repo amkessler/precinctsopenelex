@@ -89,7 +89,6 @@ processed_prez %>%
   head(10) %>% 
   knitr::kable()
 
-
 ```
 
 Bingo. We now have the results in the right format, with the column names also matching the naming conventions. 
@@ -99,8 +98,6 @@ In the end, once all a county's races are prepared we'll stitch them together in
 
 ```{r}
 
-#we'll use a pattern matching to pull all dataframes in the environment
-#with "processed" in the name and build a list of them to feed to bind_rows()
 target_dfs <- grep("processed", names(.GlobalEnv), value=TRUE)
 target_dfs_list <- do.call("list", mget(target_dfs))
 
@@ -133,10 +130,12 @@ processed_combined %>%
   
 ### Exporting the Data
 
-Now we'll export the results to a csv file. The OpenElections project has a very specific way it prefers its file names to be structured. The function `create_outfile_string()` provides a shortcut to creating that filename for 2020 general election files.
+Now we'll export the results to a csv file. The OpenElections project has a very specific way it prefers its file names to be structured. The function `create_outfile_string()` provides a shortcut to creating that filename for 2020 general election files.  
+  
+Let's put the state and county variables we set already at the very top to good use again. 
 
 ```{r}
-outfile_string <- create_outfile_string("NY", "Saratoga")
+outfile_string <- create_outfile_string(current_state, current_county)
 outfile_string
 ```
 
