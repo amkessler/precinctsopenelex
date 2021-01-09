@@ -11,7 +11,7 @@ Description: This package includes a number of helper functions designed to aid 
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/amkessler/precinctsopenelex
+URL: https://github.com/amkessler/precinctsopenelex, https://amkessler.github.io/precinctsopenelex/
 BugReports: https://github.com/amkessler/precinctsopenelex/issues
 RoxygenNote: 7.1.1
 Suggests: 
