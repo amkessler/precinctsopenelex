@@ -13,7 +13,7 @@ A data frame with 196 rows and 11 variables:
   \item{'Donald J. Trump - CON'}{votes for Trump as Conservative Party}
   \item{'Howie Hawkins - GRE'}{votes for Hawkins as Green Party}
   \item{'Jo Jorgensen - LIB'}{votes for Jogensen as Libertartian}
-  \item{'Brock Pierce - IND'}{boes for Pierce as Independence Party}
+  \item{'Brock Pierce - IND'}{votes for Pierce as Independence Party}
   \item{WriteIn}{votes for write-in candidates}
   \item{Blanks}{undervotes, where voter skipped the race and left it blank}
   \item{Voids}{overvotes, where voter improperly marked multiple candidates}
