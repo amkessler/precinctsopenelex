@@ -1,0 +1,157 @@
+---
+title: "introductory-walkthrough"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introductory-walkthrough}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(precinctsopenelex)
+library(dplyr, warn.conflicts = FALSE)
+library(tidyr)
+library(stringr)
+library(janitor, warn.conflicts = FALSE)
+library(readxl)
+```
+
+This vignette is intended to provide a walk-through of processing a set of precinct results from Saratoga County, NY, for the 2020 U.S. presidential election.  
+  
+The sample dataset for Saratoga is included with the package to allow for exploration, and provides a template for how the data should be structured for the functions to operate.  
+  
+### Importing the Wide Data
+ 
+First we'll assign a state abbreviation and county name variable needed for the input file string
+```{r}
+#chose state abbreviation and county name variable needed for the input file string
+current_state <- "NY"
+current_county <- "Saratoga"
+```
+
+Now we'll use out first function from the package to create a name string for the pre-processed "wide" precinct data file saved as Excel. The `infile_string()` function can help us with this. 
+```{r}
+
+infile_string <- create_infile_string(current_state, current_county)
+infile_string
+
+```
+
+### Reshaping/Processing the Data
+
+For the purposes of this walkthrough, we'll use a sample dataset - `precinctsampledata_ny` - to demonstrate what the pre-processed "wide" data should look like structure-wise when you import it.    
+  
+Let's take a look at the data:  
+```{r}
+precinctsampledata_ny %>% 
+  head(4) %>% 
+  knitr::kable()
+
+```
+
+Note the precise way of formatting the column names that will allow the function to work correctly:  
+ -- candidate columns should be written as "candidate name - party"  
+ -- additional choices should be listed as "WriteIn" (write-in votes), "Blanks" (undervotes), and "Voids" (overvotes)  
+  
+Now let's run the function `reshape_precinct_data()` to transform the data into the tidy/long format that the OpenElections project prefers for its standardize files.  
+
+The `reshape_precinct_data()` function wants:  
+ -- dataset (or nested import from file function)  
+ -- office: text label for office (e.g. "U.S. House")  
+ -- district: text label for district (e.g. "42"; note that statewide offices have have no district, so use "")  
+  
+As noted above, the dataframe can a table already imported before running the function, or if you prefer you can also nest the import itself inside the first argument, such as this:
+
+```{r}
+# not run:
+# processed_prez <- process_ny_data(read_excel(filestring_import, sheet = "presidential"), 
+#                                   "President", 
+#                                   "")
+```
+
+Ok, now we're ready to see the rubber meet the road.
+
+Let's run `reshape_precinct_data()` on our sample wide dataset to convert it to the proper OpenElections structure:
+
+```{r}
+processed_prez <- reshape_precinct_data(precinctsampledata_ny,
+                                  "Presidential",
+                                  "")
+
+processed_prez %>% 
+  head(10) %>% 
+  knitr::kable()
+
+
+```
+
+Bingo. We now have the results in the right format, with the column names also matching the naming conventions. 
+In a real-world scenario, there would be several races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.  
+
+In the end, once all a county's races are prepared we'll stitch them together into a combined file. There are several ways to accomplish this, but we'll use the code below to capture all dataframes present in the global environment that contain the work `processed` in their names. 
+
+```{r}
+
+#we'll use a pattern matching to pull all dataframes in the environment
+#with "processed" in the name and build a list of them to feed to bind_rows()
+target_dfs <- grep("processed", names(.GlobalEnv), value=TRUE)
+target_dfs_list <- do.call("list", mget(target_dfs))
+
+processed_combined <- bind_rows(target_dfs_list)
+
+```
+
+  
+### Checking the Data
+
+With the dataset ready, it never hurts to run a few quick counts to check the integrity of what we've created.  
+Let's do some quick visual inspections to see if anything strange stands out, or if all looks as expected.
+
+```{r}
+#check parties
+processed_combined %>% 
+  count(party) %>% 
+  knitr::kable()
+
+#check districts
+processed_combined %>% 
+  count(office, district) %>% 
+  knitr::kable()
+
+#check candidates
+processed_combined %>% 
+  count(candidate) %>% 
+  knitr::kable()
+```
+  
+### Exporting the Data
+
+Now we'll export the results to a csv file. The OpenElections project has a very specific way it prefers its file names to be structured. The function `create_outfile_string()` provides a shortcut to creating that filename for 2020 general election files.
+
+```{r}
+outfile_string <- create_outfile_string("NY", "Saratoga")
+outfile_string
+```
+
+With that in place, we'll take the final step of exporting the file to the destination of our choice.
+
+```{r}
+# not run:
+# write_csv(processed_combined, outfile_string, na = "")
+
+```
+
+
+
+
+
+
+
+

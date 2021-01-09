@@ -54,7 +54,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/reformatting-data.html">introductory-walkthrough</a>
+      <a href="../articles/introductory-walkthrough.html">introductory-walkthrough</a>
     </li>
   </ul>
 </li>
@@ -82,8 +82,8 @@
       <h1 data-toc-skip>introductory-walkthrough</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/amkessler/precinctsopenelex/blob/master/vignettes/reformatting-data.Rmd"><code>vignettes/reformatting-data.Rmd</code></a></small>
-      <div class="hidden name"><code>reformatting-data.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/amkessler/precinctsopenelex/blob/master/vignettes/introductory-walkthrough.Rmd"><code>vignettes/introductory-walkthrough.Rmd</code></a></small>
+      <div class="hidden name"><code>introductory-walkthrough.Rmd</code></div>
 
     </div>
 
@@ -206,23 +206,6 @@
 </tr>
 </tbody>
 </table>
-<p>And here are characteristics of the columns:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">precinctsampledata_ny</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://tibble.tidyverse.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span> 
-<span class="co">#&gt; Rows: 196</span>
-<span class="co">#&gt; Columns: 11</span>
-<span class="co">#&gt; $ precinct                &lt;chr&gt; "Ballston 1", "Ballston 2", "Ballston 3", "...</span>
-<span class="co">#&gt; $ `Joseph R. Biden - DEM` &lt;dbl&gt; 273, 485, 577, 428, 234, 622, 299, 264, 208...</span>
-<span class="co">#&gt; $ `Donald J. Trump - REP` &lt;dbl&gt; 195, 412, 502, 316, 193, 538, 278, 319, 219...</span>
-<span class="co">#&gt; $ `Donald J. Trump - CON` &lt;dbl&gt; 16, 58, 64, 48, 32, 71, 27, 33, 25, 47, 25,...</span>
-<span class="co">#&gt; $ `Joseph R. Biden - WOR` &lt;dbl&gt; 31, 18, 31, 16, 15, 31, 21, 17, 8, 17, 10, ...</span>
-<span class="co">#&gt; $ `Howie Hawkins - GRE`   &lt;dbl&gt; 5, 7, 3, 3, 3, 3, 3, 1, 3, 2, 1, 6, 1, 1, 1...</span>
-<span class="co">#&gt; $ `Jo Jorgensen - LIB`    &lt;dbl&gt; 8, 20, 7, 11, 8, 12, 11, 10, 5, 18, 3, 12, ...</span>
-<span class="co">#&gt; $ `Brock Pierce - IND`    &lt;dbl&gt; 1, 6, 7, 5, 2, 7, 0, 1, 1, 2, 0, 4, 4, 0, 9...</span>
-<span class="co">#&gt; $ WriteIn                 &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0...</span>
-<span class="co">#&gt; $ Blanks                  &lt;dbl&gt; 4, 5, 7, 3, 2, 7, 4, 2, 2, 3, 0, 2, 5, 2, 0...</span>
-<span class="co">#&gt; $ Voids                   &lt;dbl&gt; 1, 2, 3, 4, 0, 6, 3, 3, 4, 4, 0, 1, 1, 0, 2...</span></code></pre></div>
 <p>Note the precise way of formatting the column names that will allow the function to work correctly:<br>
 – candidate columns should be written as “candidate name - party”<br>
 – additional choices should be listed as “WriteIn” (write-in votes), “Blanks” (undervotes), and “Voids” (overvotes)</p>
@@ -232,14 +215,14 @@
 – office: text label for office (e.g. “U.S. House”)<br>
 – district: text label for district (e.g. “42”; note that statewide offices have have no district, so use "")</p>
 <p>As noted above, the dataframe can a table already imported before running the function, or if you prefer you can also nest the import itself inside the first argument, such as this:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># not run:</span>
 <span class="co"># processed_prez &lt;- process_ny_data(read_excel(filestring_import, sheet = "presidential"), </span>
 <span class="co">#                                   "President", </span>
 <span class="co">#                                   "")</span></code></pre></div>
 <p>Ok, now we’re ready to see the rubber meet the road.</p>
 <p>Let’s run <code><a href="../reference/reshape_precinct_data.html">reshape_precinct_data()</a></code> on our sample wide dataset to convert it to the proper OpenElections structure:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">processed_prez</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reshape_precinct_data.html">reshape_precinct_data</a></span><span class="op">(</span><span class="va">precinctsampledata_ny</span>,
                                   <span class="st">"Presidential"</span>,
                                   <span class="st">""</span><span class="op">)</span>
@@ -341,7 +324,7 @@
 </table>
 <p>Bingo. We now have the results in the right format, with the column names also matching the naming conventions. In a real-world scenario, there would be several races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.</p>
 <p>In the end, once all a county’s races are prepared we’ll stitch them together into a combined file. There are several ways to accomplish this, but we’ll use the code below to capture all dataframes present in the global environment that contain the work <code>processed</code> in their names.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#we'll use a pattern matching to pull all dataframes in the environment</span>
 <span class="co">#with "processed" in the name and build a list of them to feed to bind_rows()</span>
@@ -355,7 +338,7 @@
 <a href="#checking-the-data" class="anchor"></a>Checking the Data</h3>
 <p>With the dataset ready, it never hurts to run a few quick counts to check the integrity of what we’ve created.<br>
 Let’s do some quick visual inspections to see if anything strange stands out, or if all looks as expected.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#check parties</span>
 <span class="va">processed_combined</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">party</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -400,7 +383,7 @@ Let’s do some quick visual inspections to see if anything strange stands out, 
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#check districts</span>
 <span class="va">processed_combined</span> <span class="op">%&gt;%</span> 
@@ -418,7 +401,7 @@ Let’s do some quick visual inspections to see if anything strange stands out, 
 <td align="right">1960</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co">#check candidates</span>
 <span class="va">processed_combined</span> <span class="op">%&gt;%</span> 
@@ -469,12 +452,12 @@ Let’s do some quick visual inspections to see if anything strange stands out, 
 <h3 class="hasAnchor">
 <a href="#exporting-the-data" class="anchor"></a>Exporting the Data</h3>
 <p>Now we’ll export the results to a csv file. The OpenElections project has a very specific way it prefers its file names to be structured. The function <code><a href="../reference/create_outfile_string.html">create_outfile_string()</a></code> provides a shortcut to creating that filename for 2020 general election files.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">outfile_string</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_outfile_string.html">create_outfile_string</a></span><span class="op">(</span><span class="st">"NY"</span>, <span class="st">"Saratoga"</span><span class="op">)</span>
 <span class="va">outfile_string</span>
 <span class="co">#&gt; [1] "NY_Saratoga/20201103__NY__general__saratoga__precinct.csv"</span></code></pre></div>
 <p>With that in place, we’ll take the final step of exporting the file to the destination of our choice.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># not run:</span>
 <span class="co"># write_csv(processed_combined, outfile_string, na = "")</span></code></pre></div>
 </div>
