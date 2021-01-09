@@ -40,8 +40,9 @@
 
 
 <meta property="og:title" content="Precinct results from 2020 presidential election in Saratoga County, NY. — precinctsampledata_ny" />
-<meta property="og:description" content="A dataset containing precinct-by-precinct election results. Note that NY rules allow
-candidates to be listed under more than one party on the ballot." />
+<meta property="og:description" content="A dataset containing precinct-by-precinct election results. Note that NY's odd rules allow
+candidates to be listed under more than one party on the ballot, which is why you'll
+see Trump in there twice under both the Republican and Conservative parties." />
 
 
 
@@ -127,8 +128,9 @@ candidates to be listed under more than one party on the ballot." />
     </div>
 
     <div class="ref-description">
-    <p>A dataset containing precinct-by-precinct election results. Note that NY rules allow
-candidates to be listed under more than one party on the ballot.</p>
+    <p>A dataset containing precinct-by-precinct election results. Note that NY's odd rules allow
+candidates to be listed under more than one party on the ballot, which is why you'll
+see Trump in there twice under both the Republican and Conservative parties.</p>
     </div>
 
     <pre class="usage"><span class='va'>precinctsampledata_ny</span></pre>
@@ -138,15 +140,15 @@ candidates to be listed under more than one party on the ballot.</p>
 
     <p>A data frame with 196 rows and 11 variables:</p><dl>
   <dt>precinct</dt><dd><p>election precinct name</p></dd>
-  <dt>'Joseph R. Biden - DEM'</dt><dd><p>number of votes</p></dd>
-  <dt>'Donald J. Trump - REP'</dt><dd><p>number of votes</p></dd>
-  <dt>'Donald J. Trump - CON'</dt><dd><p>number of votes</p></dd>
-  <dt>'Howie Hawkins - GRE'</dt><dd><p>number of votes</p></dd>
-  <dt>'Jo Jorgensen - LIB'</dt><dd><p>number of votes</p></dd>
-  <dt>'Brock Pierce - IND'</dt><dd><p>number of votes</p></dd>
-  <dt>WriteIn</dt><dd><p>number of write in votes</p></dd>
-  <dt>Blanks</dt><dd><p>number of undervotes, where voter skipped race</p></dd>
-  <dt>Voids</dt><dd><p>number of overvotes, where voter marked multiple candidates</p></dd>
+  <dt>'Joseph R. Biden - DEM'</dt><dd><p>votes for Biden as Democrat</p></dd>
+  <dt>'Donald J. Trump - REP'</dt><dd><p>votes for Trump as Republican</p></dd>
+  <dt>'Donald J. Trump - CON'</dt><dd><p>votes for Trump as Conservative Party</p></dd>
+  <dt>'Howie Hawkins - GRE'</dt><dd><p>votes for Hawkins as Green Party</p></dd>
+  <dt>'Jo Jorgensen - LIB'</dt><dd><p>votes for Jogensen as Libertartian</p></dd>
+  <dt>'Brock Pierce - IND'</dt><dd><p>boes for Pierce as Independence Party</p></dd>
+  <dt>WriteIn</dt><dd><p>votes for write-in candidates</p></dd>
+  <dt>Blanks</dt><dd><p>undervotes, where voter skipped the race and left it blank</p></dd>
+  <dt>Voids</dt><dd><p>overvotes, where voter improperly marked multiple candidates</p></dd>
   ...
 
 </dl>

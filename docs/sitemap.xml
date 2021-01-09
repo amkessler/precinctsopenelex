@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//index.html</loc>
+  </url>
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//reference/create_infile_string.html</loc>
+  </url>
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//reference/create_outfile_string.html</loc>
+  </url>
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//reference/precinctsampledata_ny.html</loc>
+  </url>
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//reference/reshape_precinct_data.html</loc>
+  </url>
+  <url>
+    <loc>https://amkessler.github.io/precinctsopenelex//articles/introductory-walkthrough.html</loc>
+  </url>
+</urlset>
