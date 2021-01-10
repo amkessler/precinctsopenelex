@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create File Name String for Importing Data — create_infile_string • precinctsopenelex</title>
+<title>Convert a Single Column of Top-level Totals by Precinct — convert_toplevel_totals • precinctsopenelex</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,13 @@
 
 
 
-<meta property="og:title" content="Create File Name String for Importing Data — create_infile_string" />
-<meta property="og:description" content="Can be used to build a file string specific to a county, based on the standardized folder/file format
-&quot;NY_Saratoga/NY_Saratoga_GE20_cleaned.xlsx&quot;" />
+<meta property="og:title" content="Convert a Single Column of Top-level Totals by Precinct — convert_toplevel_totals" />
+<meta property="og:description" content="This function can be used in situations present in some counties where precinct
+totals exist that you want to capture separately, like total ballots cast, total registered voters, etc.
+The function assumes the existence of a &quot;precinct&quot; column with the precinct names, and then asks you to
+provide the column name (quoted) with the total votes you want to capture. Additionally to match
+OpenElex formatting the category is listed as the &quot;office&quot;: the third argument allows you to provide
+that value." />
 
 
 
@@ -121,38 +125,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create File Name String for Importing Data</h1>
+    <h1>Convert a Single Column of Top-level Totals by Precinct</h1>
     <small class="dont-index">Source: <a href='https://github.com/amkessler/precinctsopenelex/blob/master/R/precinct_processing_functions.R'><code>R/precinct_processing_functions.R</code></a></small>
-    <div class="hidden name"><code>create_infile_string.Rd</code></div>
+    <div class="hidden name"><code>convert_toplevel_totals.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Can be used to build a file string specific to a county, based on the standardized folder/file format
-"NY_Saratoga/NY_Saratoga_GE20_cleaned.xlsx"</p>
+    <p>This function can be used in situations present in some counties where precinct
+totals exist that you want to capture separately, like total ballots cast, total registered voters, etc.
+The function assumes the existence of a "precinct" column with the precinct names, and then asks you to
+provide the column name (quoted) with the total votes you want to capture. Additionally to match
+OpenElex formatting the category is listed as the "office": the third argument allows you to provide
+that value.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_infile_string</span><span class='op'>(</span><span class='va'>stateabbr</span>, <span class='va'>countyname</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>convert_toplevel_totals</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>column_with_totals</span>, <span class='va'>office_text</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>stateabbr</th>
-      <td><p>two-letter state abbreviation (e.g. "NY")</p></td>
+      <th>df</th>
+      <td><p>dataframe with the precinct totals</p></td>
     </tr>
     <tr>
-      <th>countyname</th>
-      <td><p>county name where the precincts located (e.g. "Saratoga")</p></td>
+      <th>column_with_totals</th>
+      <td><p>quoted name of target column containing the totals to capture (e.g. "total_reg_voters")</p></td>
+    </tr>
+    <tr>
+      <th>office_text</th>
+      <td><p>text to fill in the OpenElex office column as per the standard (e.g. "Registered Voters")</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a text string</p>
+    <p>formatted dataframe ready to match up with OpenElex column structure</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>create_infile_string</span><span class='op'>(</span><span class='st'>"NY"</span>, <span class='st'>"Saratoga"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "NY_Saratoga/NY_Saratoga_GE20_cleaned.xlsx"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

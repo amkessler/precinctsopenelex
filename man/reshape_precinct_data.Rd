@@ -2,7 +2,7 @@
 % Please edit documentation in R/precinct_processing_functions.R
 \name{reshape_precinct_data}
 \alias{reshape_precinct_data}
-\title{Reshaping County Precinct Data to OpenElex Format}
+\title{Reshape County Precinct Data for Candidates to OpenElex Format}
 \usage{
 reshape_precinct_data(df, office, district)
 }
@@ -17,8 +17,10 @@ reshape_precinct_data(df, office, district)
 a reshaped dataframe in openelex long/tidy format
 }
 \description{
-This function is designed to take a dataset ready to be reshaped once the initial cleanup steps are taken.
-The file will have a precinct column, followed by columns with vote results parsed from the "candidate - party" field
+This function is designed to take a wide dataset with one row per precinct and candidate vote
+columns and reshape once the initial pre-processing is done.
+The file to import should have have a precinct column, followed by columns with vote results formatted as "candidate - party".
+The resulting dataframe will be long/tidy data with these columns: precinct, office, district, party, votes.
 }
 \examples{
 \dontrun{

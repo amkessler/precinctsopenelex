@@ -25,10 +25,12 @@ create_infile_string <- function(stateabbr, countyname) {
   return(in_name)
 }
 
-#' Reshaping County Precinct Data to OpenElex Format
+#' Reshape County Precinct Data for Candidates to OpenElex Format
 #'
-#' This function is designed to take a dataset ready to be reshaped once the initial cleanup steps are taken.
-#' The file will have a precinct column, followed by columns with vote results parsed from the "candidate - party" field
+#' This function is designed to take a wide dataset with one row per precinct and candidate vote
+#' columns and reshape once the initial pre-processing is done.
+#' The file to import should have have a precinct column, followed by columns with vote results formatted as "candidate - party".
+#' The resulting dataframe will be long/tidy data with these columns: precinct, office, district, party, votes.
 #'
 #' @param df formatted dataframe of county precinct-level results
 #' @param office which office the results refer to (e.g. "presidential", "U.S. House", "State Senate", etc.)
@@ -97,3 +99,36 @@ create_outfile_string <- function(target_state, target_county) {
 }
 
 
+#' Convert a Single Column of Top-level Totals by Precinct
+#'
+#' This function can be used in situations present in some counties where precinct
+#' totals exist that you want to capture separately, like total ballots cast, total registered voters, etc.
+#' The function assumes the existence of a "precinct" column with the precinct names, and then asks you to
+#' provide the column name (quoted) with the total votes you want to capture. Additionally to match
+#' OpenElex formatting the category is listed as the "office": the third argument allows you to provide
+#' that value.
+#'
+#'
+#'
+#' @param df dataframe with the precinct totals
+#' @param column_with_totals quoted name of target column containing the totals to capture (e.g. "total_reg_voters")
+#' @param office_text text to fill in the OpenElex office column as per the standard (e.g. "Registered Voters")
+#'
+#' @return formatted dataframe ready to match up with OpenElex column structure
+#' @export
+#'
+convert_toplevel_totals <- function(df, column_with_totals, office_text) {
+  df_converted <- df %>%
+    #isolate just the precinct name and target column containing vote totals
+    select(precinct, votes = column_with_totals) %>%
+    #add in the standard OpenElex columns
+    mutate(
+      office = office_text,
+      district = "",
+      candidate = "",
+      party = ""
+    ) %>%
+    #reorder columns to match OpenElex standard format
+    select(precinct, office, district, candidate, party, votes)
+  return(df_converted)
+}

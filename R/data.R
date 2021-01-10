@@ -1,8 +1,8 @@
-#' Precinct results from 2020 presidential election in Saratoga County, NY.
+#' Sample precinct data from 2020 presidential election
 #'
-#' A dataset containing precinct-by-precinct election results. Note that NY's odd rules allow
-#' candidates to be listed under more than one party on the ballot, which is why you'll
-#' see Trump in there twice under both the Republican and Conservative parties.
+#' A dataset containing precinct-by-precinct election results in Saratoga County, NY, for the 2020
+#' presidential election. Note that New York's unusual rules allow candidates to be listed under more than one
+#' party on the ballot, which is why you'll see Trump in there twice under both the Republican and Conservative parties.
 #'
 #' @format A data frame with 196 rows and 11 variables:
 #' \describe{
