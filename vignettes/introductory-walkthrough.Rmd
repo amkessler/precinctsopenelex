@@ -82,8 +82,10 @@ processed_prez %>%
 
 ```
 
-Bingo. We now have the results in the right format, with the column names also matching the naming conventions. 
-In a real-world scenario, there would be several races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.   
+Bingo. We now have the results in the right format, with the column names also matching the naming conventions.  
+  
+In a real-world scenario, there would be several races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.  
+  
 As noted earlier, the dataframe fed into the function can a named table already imported before running the function, or if you prefer you can also nest the import itself inside the first argument, such as this:
 
 ```{r}
@@ -93,7 +95,9 @@ As noted earlier, the dataframe fed into the function can a named table already 
 #                                   "")
 ```
 
-In the end, once all a county's races are prepared we'll stitch them together into a combined file. There are several ways to accomplish this, but we'll use the code below to capture all dataframes present in the global environment that contain the work `processed` in their names. 
+In the end, once all a county's races are prepared we'll **stitch them together into a combined file**.  
+  
+There are several ways to accomplish this, but we'll use the code below to capture all dataframes present in the global environment that contain the work `processed` in their names. 
 
 ```{r}
 
@@ -126,6 +130,8 @@ processed_combined %>%
   count(candidate) %>% 
   knitr::kable()
 ```
+
+Looks good!  
   
 ### Exporting the Data
 

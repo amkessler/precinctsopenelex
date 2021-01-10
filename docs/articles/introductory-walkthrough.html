@@ -212,15 +212,9 @@
 – dataset (or nested import from file function)<br>
 – office: text label for office (e.g. “U.S. House”)<br>
 – district: text label for district (e.g. “42”; note that statewide offices have have no district, so use "")</p>
-<p>As noted above, the dataframe can a table already imported before running the function, or if you prefer you can also nest the import itself inside the first argument, such as this:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># not run:</span>
-<span class="co"># processed_prez &lt;- process_ny_data(read_excel(filestring_import, sheet = "presidential"), </span>
-<span class="co">#                                   "President", </span>
-<span class="co">#                                   "")</span></code></pre></div>
 <p>Ok, now we’re ready to see the rubber meet the road.</p>
 <p>Let’s run <code><a href="../reference/reshape_precinct_data.html">reshape_precinct_data()</a></code> on our sample wide dataset to convert it to the proper OpenElections structure:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">processed_prez</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/reshape_precinct_data.html">reshape_precinct_data</a></span><span class="op">(</span><span class="va">precinctsampledata_ny</span>,
                                   <span class="st">"Presidential"</span>,
                                   <span class="st">""</span><span class="op">)</span>
@@ -320,8 +314,16 @@
 </tr>
 </tbody>
 </table>
-<p>Bingo. We now have the results in the right format, with the column names also matching the naming conventions. In a real-world scenario, there would be several races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.</p>
-<p>In the end, once all a county’s races are prepared we’ll stitch them together into a combined file. There are several ways to accomplish this, but we’ll use the code below to capture all dataframes present in the global environment that contain the work <code>processed</code> in their names.</p>
+<p>Bingo. We now have the results in the right format, with the column names also matching the naming conventions.</p>
+<p>In a real-world scenario, there would be several races to process in addition to presidential: U.S Senate and House, along with state House and Senate. They can be done using the same manner.</p>
+<p>As noted earlier, the dataframe fed into the function can a named table already imported before running the function, or if you prefer you can also nest the import itself inside the first argument, such as this:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># not run:</span>
+<span class="co"># processed_prez &lt;- process_ny_data(read_excel(filestring_import, sheet = "presidential"), </span>
+<span class="co">#                                   "President", </span>
+<span class="co">#                                   "")</span></code></pre></div>
+<p>In the end, once all a county’s races are prepared we’ll <strong>stitch them together into a combined file</strong>.</p>
+<p>There are several ways to accomplish this, but we’ll use the code below to capture all dataframes present in the global environment that contain the work <code>processed</code> in their names.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">target_dfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"processed"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">.GlobalEnv</span><span class="op">)</span>, value<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
@@ -443,6 +445,7 @@ Let’s do some quick visual inspections to see if anything strange stands out, 
 </tr>
 </tbody>
 </table>
+<p>Looks good!</p>
 </div>
 <div id="exporting-the-data" class="section level3">
 <h3 class="hasAnchor">
