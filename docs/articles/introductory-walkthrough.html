@@ -323,7 +323,7 @@
 <span class="co">#                                   "President", </span>
 <span class="co">#                                   "")</span></code></pre></div>
 <p>In the end, once all a county’s races are prepared we’ll <strong>stitch them together into a combined file</strong>.</p>
-<p>There are several ways to accomplish this, but we’ll use the code below to capture all dataframes present in the global environment that contain the work <code>processed</code> in their names.</p>
+<p>There are several ways to accomplish this, but we’ll use the code below to capture all dataframes present in the global environment that contain the word <code>processed</code> in their names.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">target_dfs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"processed"</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">.GlobalEnv</span><span class="op">)</span>, value<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>

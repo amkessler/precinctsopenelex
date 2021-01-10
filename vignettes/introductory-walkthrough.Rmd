@@ -97,7 +97,7 @@ As noted earlier, the dataframe fed into the function can a named table already 
 
 In the end, once all a county's races are prepared we'll **stitch them together into a combined file**.  
   
-There are several ways to accomplish this, but we'll use the code below to capture all dataframes present in the global environment that contain the work `processed` in their names. 
+There are several ways to accomplish this, but we'll use the code below to capture all dataframes present in the global environment that contain the word `processed` in their names. 
 
 ```{r}
 
