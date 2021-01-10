@@ -135,7 +135,7 @@ Looks good! In our walkthrough, we've now successfully reshaped our precinct dat
   
 ### Exporting the Data
 
-Now we'll export the results to a csv file. The OpenElections project has a very specific way it prefers its file names to be structured. The function `create_outfile_string()` provides a shortcut to creating that filename for 2020 general election files.  
+Now we'll export the results to a csv file. The OpenElections project has a very specific way it prefers its file names to be structured. The function `create_outfile_string()` provides a shortcut to creating that filename for 2020 general election files. It aims to put the file into a directory also named for the county.
   
 Let's use the state and county variables we set already at the very top of this walkthrough to feed into  `create_outfile_string()`.  
 
@@ -144,7 +144,7 @@ outfile_string <- create_outfile_string(current_state, current_county)
 outfile_string
 ```
 
-With that in place, we'll take the final step of exporting the file to the destination of our choice.
+With that in place, we'll take the final step of exporting the file.
 
 ```{r}
 # not run:
