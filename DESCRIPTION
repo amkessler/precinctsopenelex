@@ -1,7 +1,7 @@
 Package: precinctsopenelex
 Type: Package
 Title: Helps Process Precinct Results For OpenElex Project
-Version: 0.0.0.9010
+Version: 0.0.0.9011
 Author: Aaron Kessler
 Maintainer: Aaron Kessler <kessler.aaron@protonmail.com>
 Description: This package includes a number of helper functions designed to aid in creating precinct-level election results
