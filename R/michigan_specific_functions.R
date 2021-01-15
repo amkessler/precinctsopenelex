@@ -22,7 +22,7 @@ mi_replace_colnames_straightparty <- function(df) {
                    'WriteIn' = 'unresolved_write_in')
 
   df_renamed <- df %>%
-    clean_names() %>%
+    janitor::clean_names() %>%
     rename(!!!newcolnames)
 
   return(df_renamed)
@@ -54,7 +54,7 @@ mi_replace_colnames_presidential <- function(df) {
                    'WriteIn' = 'unresolved_write_in')
 
   df_renamed <- df %>%
-    clean_names() %>%
+    janitor::clean_names() %>%
     rename(!!!newcolnames)
 
   return(df_renamed)
@@ -84,7 +84,7 @@ mi_replace_colnames_ussenate <- function(df) {
                    'WriteIn' = 'unresolved_write_in')
 
   df_renamed <- df %>%
-    clean_names() %>%
+    janitor::clean_names() %>%
     rename(!!!newcolnames)
 
   return(df_renamed)
