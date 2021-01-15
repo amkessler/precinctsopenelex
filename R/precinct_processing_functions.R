@@ -60,7 +60,9 @@ reshape_precinct_data <- function(df, office, district){
       party = temp[, 2],
       office = office,
       district = district,
-      candidate = str_replace_all(candidate, "WriteIn", "Write-Ins") #standarize with openelex name
+      candidate = str_replace_all(candidate, "WriteIn", "Write-Ins"), #standarize with openelex name
+      candidate = str_replace_all(candidate, "Write-In", "Write-Ins"),
+      candidate = str_replace_all(candidate, "Unresolved Write-In", "Write-Ins")
     ) %>%
     #reorder columns to match openelex format
     select(
