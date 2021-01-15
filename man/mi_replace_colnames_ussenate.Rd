@@ -2,7 +2,7 @@
 % Please edit documentation in R/michigan_specific_functions.R
 \name{mi_replace_colnames_ussenate}
 \alias{mi_replace_colnames_ussenate}
-\title{Michigan Specific Function to Rename Columns for US Senate Dataset}
+\title{Michigan Specific Function to Rename Columns for US Senate Data}
 \usage{
 mi_replace_colnames_ussenate(df)
 }
@@ -14,7 +14,8 @@ df with renamed columns
 }
 \description{
 This function takes a dataframe containing precinct data with the original Michigan headers for US Senate
-election results and converts the headers to proper formatting to use with package's processing functions
+election results and converts the headers to proper formatting to use with package's processing functions. It is tailored
+to work with the way Michigan's counties list their candidates/parties and so will only with with that state's results.
 }
 \examples{
 \dontrun{

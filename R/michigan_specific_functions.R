@@ -1,7 +1,8 @@
-#' Michigan Specific Function to Rename Columns for Straight-Party Dataset
+#' Michigan-Specific Function to Rename Columns for Straight-Party Data
 #'
 #' This function takes a dataframe containing precinct data with the original Michigan headers for straight-party
-#' vote totals and converts the headers to proper formatting to use with package's processing functions
+#' vote totals and converts the headers to proper formatting to use with package's processing functions. It is tailored
+#' to work with the way Michigan's counties list their candidates/parties and so will only with with that state's results.
 #'
 #' @param df
 #'
@@ -31,10 +32,11 @@ mi_replace_colnames_straightparty <- function(df) {
 
 
 
-#' Michigan Specific Function to Rename Columns for Presidential Dataset
+#' Michigan Specific Function to Rename Columns for Presidential Data
 #'
 #' This function takes a dataframe containing precinct data with the original Michigan headers for presidential
-#' election results and converts the headers to proper formatting to use with package's processing functions
+#' election results and converts the headers to proper formatting to use with package's processing functions. It is tailored
+#' to work with the way Michigan's counties list their candidates/parties and so will only with with that state's results.
 #'
 #' @param df
 #'
@@ -62,10 +64,11 @@ mi_replace_colnames_presidential <- function(df) {
 }
 
 
-#' Michigan Specific Function to Rename Columns for US Senate Dataset
+#' Michigan Specific Function to Rename Columns for US Senate Data
 #'
 #' This function takes a dataframe containing precinct data with the original Michigan headers for US Senate
-#' election results and converts the headers to proper formatting to use with package's processing functions
+#' election results and converts the headers to proper formatting to use with package's processing functions. It is tailored
+#' to work with the way Michigan's counties list their candidates/parties and so will only with with that state's results.
 #'
 #' @param df
 #'
