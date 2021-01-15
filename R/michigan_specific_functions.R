@@ -21,7 +21,8 @@ mi_format_column_names <- function(df) {
     names() %>%
     str_squish() %>%
     str_replace_all("\\(", "- ") %>%
-    str_remove_all("\\)")
+    str_remove_all("\\)") %>%
+    str_replace_all("\\/", "&") #for multi-candidate listings likes prez & VP
 
   colnames(df) <- newcolnames
 
