@@ -13,13 +13,7 @@
     <loc>https://amkessler.github.io/precinctsopenelex//reference/create_outfile_string.html</loc>
   </url>
   <url>
-    <loc>https://amkessler.github.io/precinctsopenelex//reference/mi_replace_colnames_presidential.html</loc>
-  </url>
-  <url>
-    <loc>https://amkessler.github.io/precinctsopenelex//reference/mi_replace_colnames_straightparty.html</loc>
-  </url>
-  <url>
-    <loc>https://amkessler.github.io/precinctsopenelex//reference/mi_replace_colnames_ussenate.html</loc>
+    <loc>https://amkessler.github.io/precinctsopenelex//reference/mi_format_column_names.html</loc>
   </url>
   <url>
     <loc>https://amkessler.github.io/precinctsopenelex//reference/pipe.html</loc>
