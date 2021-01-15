@@ -17,7 +17,7 @@ mi_replace_colnames_straightparty <- function(df) {
                    'Republican Party - REP' = 'republican_party_rep',
                    'Libertarian Party - LIB' = 'libertarian_party_lib',
                    'U.S. Taxpayers Party - UST' = 'u_s_taxpayers_party_ust',
-                   'Working Class Party - WCP' = 'working_class_party_wc',
+                   'Working Class Party - WCP' = 'working_class_party_wcp',
                    'Green Party - GRN' = 'green_party_grn',
                    'Natural Law Party - NLP' = 'natural_law_party_nat',
                    'WriteIn' = 'unresolved_write_in')
