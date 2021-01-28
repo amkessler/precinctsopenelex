@@ -1,4 +1,4 @@
-#' Michigan-Specific Function to Rename Columns in Correct Format
+#' Michigan-specific Function to Rename Columns
 #'
 #' This function takes a dataframe containing precinct data with the original Michigan candidate/party headers and
 #' converts the headers to proper formatting to use with package's processing functions. It is tailored
@@ -33,7 +33,7 @@ mi_format_column_names <- function(df) {
 
 
 
-#' Michigan-Specific Function To Clean Columns With Embedded Precinct Names
+#' Michigan-specific Function to Fix Mixing of Precinct Names and Vote Types
 #'
 #' A number of Michigan counties report their results in a format that both mixes
 #' together the precinct names and several vote categories (e.g. early vote, total vote)
