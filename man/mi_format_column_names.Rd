@@ -2,7 +2,7 @@
 % Please edit documentation in R/michigan_specific_functions.R
 \name{mi_format_column_names}
 \alias{mi_format_column_names}
-\title{Michigan-Specific Function to Rename Columns in Correct Format}
+\title{Michigan-specific Function to Rename Columns}
 \usage{
 mi_format_column_names(df)
 }

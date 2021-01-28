@@ -2,7 +2,7 @@
 % Please edit documentation in R/michigan_specific_functions.R
 \name{mi_clean_embedded_precinct_names}
 \alias{mi_clean_embedded_precinct_names}
-\title{Michigan-Specific Function To Clean Columns With Embedded Precinct Names}
+\title{Michigan-specific Function to Fix Mixing of Precinct Names and Vote Types}
 \usage{
 mi_clean_embedded_precinct_names(data)
 }
