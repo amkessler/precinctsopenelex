@@ -7,10 +7,10 @@
 mi_format_column_names(df)
 }
 \arguments{
-\item{df}{}
+\item{df}{a dataframe}
 }
 \value{
-df with renamed columns and completely empty columns removed
+returns a dataframe with renamed columns and completely empty columns removed
 }
 \description{
 This function takes a dataframe containing precinct data with the original Michigan candidate/party headers and

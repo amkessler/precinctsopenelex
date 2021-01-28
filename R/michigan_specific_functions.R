@@ -4,9 +4,9 @@
 #' converts the headers to proper formatting to use with package's processing functions. It is tailored
 #' to work with the way Michigan counties' format of "Candidate (PARTY)" and also incorporates step to remove empty columns.
 #'
-#' @param df
+#' @param df a dataframe
 #'
-#' @return df with renamed columns and completely empty columns removed
+#' @return returns a dataframe with renamed columns and completely empty columns removed
 #' @export
 #'
 #' @examples \dontrun{
@@ -43,7 +43,7 @@ mi_format_column_names <- function(df) {
 #'
 #' @param data a dataframe with the above mentioned issues
 #'
-#' @return a cleaned dataframe ready for further processing
+#' @return returns a cleaned dataframe ready for further processing
 #' @export
 #'
 #' @examples \dontrun{

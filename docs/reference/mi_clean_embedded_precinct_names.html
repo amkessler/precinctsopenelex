@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sample precinct data from 2020 presidential election — precinctsampledata_ny • precinctsopenelex</title>
+<title>Michigan-Specific Function To Clean Columns With Embedded Precinct Names — mi_clean_embedded_precinct_names • precinctsopenelex</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,12 @@
 
 
 
-<meta property="og:title" content="Sample precinct data from 2020 presidential election — precinctsampledata_ny" />
-<meta property="og:description" content="A dataset containing precinct-by-precinct election results in Saratoga County, NY, for the 2020
-presidential election. Note that New York's unusual rules allow candidates to be listed under more than one
-party on the ballot, which is why you'll see Trump in there twice under both the Republican and Conservative parties." />
+<meta property="og:title" content="Michigan-Specific Function To Clean Columns With Embedded Precinct Names — mi_clean_embedded_precinct_names" />
+<meta property="og:description" content="A number of Michigan counties report their results in a format that both mixes
+together the precinct names and several vote categories (e.g. early vote, total vote)
+in a single column. This function both extracts the precinct name from that mess,
+and also removes rows featuring  multiple vote subtypes to leave just the &quot;Total&quot; count
+for each candidate." />
 
 
 
@@ -122,41 +124,39 @@ party on the ballot, which is why you'll see Trump in there twice under both the
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sample precinct data from 2020 presidential election</h1>
-    <small class="dont-index">Source: <a href='https://github.com/amkessler/precinctsopenelex/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>precinctsampledata_ny.Rd</code></div>
+    <h1>Michigan-Specific Function To Clean Columns With Embedded Precinct Names</h1>
+    <small class="dont-index">Source: <a href='https://github.com/amkessler/precinctsopenelex/blob/master/R/michigan_specific_functions.R'><code>R/michigan_specific_functions.R</code></a></small>
+    <div class="hidden name"><code>mi_clean_embedded_precinct_names.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A dataset containing precinct-by-precinct election results in Saratoga County, NY, for the 2020
-presidential election. Note that New York's unusual rules allow candidates to be listed under more than one
-party on the ballot, which is why you'll see Trump in there twice under both the Republican and Conservative parties.</p>
+    <p>A number of Michigan counties report their results in a format that both mixes
+together the precinct names and several vote categories (e.g. early vote, total vote)
+in a single column. This function both extracts the precinct name from that mess,
+and also removes rows featuring  multiple vote subtypes to leave just the "Total" count
+for each candidate.</p>
     </div>
 
-    <pre class="usage"><span class='va'>precinctsampledata_ny</span></pre>
+    <pre class="usage"><span class='fu'>mi_clean_embedded_precinct_names</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>a dataframe with the above mentioned issues</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with 196 rows and 11 variables:</p><dl>
-  <dt>precinct</dt><dd><p>election precinct name</p></dd>
-  <dt>'Joseph R. Biden - DEM'</dt><dd><p>votes for Biden as Democrat</p></dd>
-  <dt>'Donald J. Trump - REP'</dt><dd><p>votes for Trump as Republican</p></dd>
-  <dt>'Donald J. Trump - CON'</dt><dd><p>votes for Trump as Conservative Party</p></dd>
-  <dt>'Howie Hawkins - GRE'</dt><dd><p>votes for Hawkins as Green Party</p></dd>
-  <dt>'Jo Jorgensen - LIB'</dt><dd><p>votes for Jogensen as Libertartian</p></dd>
-  <dt>'Brock Pierce - IND'</dt><dd><p>votes for Pierce as Independence Party</p></dd>
-  <dt>WriteIn</dt><dd><p>votes for write-in candidates</p></dd>
-  <dt>Blanks</dt><dd><p>undervotes, where voter skipped the race and left it blank</p></dd>
-  <dt>Voids</dt><dd><p>overvotes, where voter improperly marked multiple candidates</p></dd>
-  ...
+    <p>returns a cleaned dataframe ready for further processing</p>
 
-</dl>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://www.saratogacountyny.gov/2020-official-general-election-results/'>https://www.saratogacountyny.gov/2020-official-general-election-results/</a></p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'>mi_clean_embedded_precinct_names</span><span class='op'>(</span><span class='va'>mydataframe</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

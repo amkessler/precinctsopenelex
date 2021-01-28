@@ -10,7 +10,7 @@ mi_clean_embedded_precinct_names(data)
 \item{data}{a dataframe with the above mentioned issues}
 }
 \value{
-a cleaned dataframe ready for further processing
+returns a cleaned dataframe ready for further processing
 }
 \description{
 A number of Michigan counties report their results in a format that both mixes
