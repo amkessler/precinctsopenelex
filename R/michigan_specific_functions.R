@@ -15,7 +15,7 @@
 mi_format_column_names <- function(df) {
 
   df <- df %>%
-    janitor::remove_empty("cols")
+    janitor::remove_empty(c("cols", "rows"))
 
   newcolnames <- df %>%
     names() %>%
@@ -50,6 +50,9 @@ mi_format_column_names <- function(df) {
 #' mi_clean_embedded_precinct_names(mydataframe)
 #' }
 mi_clean_embedded_precinct_names <- function(data) {
+  #remove empty columns and rows
+  data <- data %>%
+    janitor::remove_empty(c("cols", "rows"))
   #first we need to determine if the second column is NA, since the pattern is the precinct names are NA for vote columns
   #don't want to hardcode in a column name because they'll be different for every election race type. but 2nd should always be NA.
   second_col_name <- data %>%
